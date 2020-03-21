@@ -1,0 +1,30 @@
+{
+  "name": "apollo-mongoose-datasource",
+  "version": "1.0.0",
+  "description": "Apollo datasource for mongoose",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jsdoc": "^3.6.3"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexanderVu/apollo-mongoose-datasource.git"
+  },
+  "keywords": [
+    "apollo",
+    "graphql",
+    "mongoose",
+    "mongodb",
+    "mongo"
+  ],
+  "author": "Alexander Vu <alexander.vu.tuyet@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexanderVu/apollo-mongoose-datasource/issues"
+  },
+  "homepage": "https://github.com/alexanderVu/apollo-mongoose-datasource#readme"
+}
