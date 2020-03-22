@@ -2,15 +2,22 @@ const { DataSource } = require('apollo-datasource')
 const { ApolloError } = require('apollo-server-errors')
 const Mongoose = require('mongoose')
 const toMongooseFilterExpression = require('./src/toMongooseFilterExpression')
-const cleanDocumentUpdate = require('./src/cleanDocumentUpdate')
+const cleanDocumentUpdate = require('./src/removeEmptyElements')
 const { ObjectId } = Mongoose.Types
 
 /**
- * Default pagination page size
+ * Default pagination page size.
  * @type {number}
  */
 const PAGINATION_DEFAULT_LIMIT = 20
-
+/**
+ * Default value to use filter converter.
+ * @type {boolean}
+ */
+const FILTER_CONVERTER = false
+/**
+ * Class to 
+ */
 class MongooseDataSource extends DataSource {
   /**
    * Validate Mongoose model name when initializing class.
@@ -22,14 +29,27 @@ class MongooseDataSource extends DataSource {
    */
   constructor (mongooseModelName, options = {}) {
     super()
-    this.options = { limit: PAGINATION_DEFAULT_LIMIT, ...options }
+    /**
+     * @property {object} options - Default values for handling with mongoose methods.
+     */
+    this.options = { 
+      limit: PAGINATION_DEFAULT_LIMIT,
+      convertFilter: FILTER_CONVERTER,
+      ...options
+    }
     if (typeof mongooseModelName !== 'string') {
       throw new ApolloError('Mongoose Data Source need a Mongoose model name.')
     }
     if (!Mongoose.models || !Mongoose.models[mongooseModelName]) {
       throw new ApolloError(`Unknown Mongoose model '${mongooseModelName}'. Did you import your Mongoose model?`)
     }
+    /**
+     * @property {object} Model - Mongoose Model definition
+     */
     this.Model = Mongoose.model(mongooseModelName)
+    /**
+     * @property {object} Mongoose schema definition.
+     */
     this.Schema = Mongoose.modelSchemas[mongooseModelName]
   }
 
@@ -37,36 +57,58 @@ class MongooseDataSource extends DataSource {
    * This is a function that gets called by ApolloServer when being setup.
    * This function gets called with the datasource config including things
    * like caches and context. We'll assign this.context to the request context
-   * here, so we can know about the user making requests
+   * here, so we can know about the user making requests.
+   * @param {object} config
+   * @returns {void}
    */
   initialize (config) {
     this.context = config.context
   }
 
   /**
-   * Find a specific record, by using filter entries.
-   * @param {object} filter - Optional. Specifies selection filter using query operators.
-   * @param {object} projection - Optional. Specifies the fields to return in the documents
-   *                 that match the query filter. For details, see
+   * @property {Function} convertQuery - Convert filter values to native mongo query.
+   * @param {object} filter - Filter object
+   * @param {boolean} [nativeQuery] - Override setting to convert query (optional).
+   * @returns {object}
+   */
+  convertQuery(filter, nativeQuery = null) {
+    // user override option 
+    if (nativeQuery === true) {
+      return toMongooseFilterExpression(filter)
+    }
+    // use default option only when override option is not set
+    if (this.options.convertFilter === true && nativeQuery !== false) {
+      return toMongooseFilterExpression(filter)
+    }
+    return filter;
+  }
+
+  /**
+   * @property {Function} findOne - Find a specific record, by using filter entries.
+   * @param {object} options - Option can have tree properties. **Filter** to select specifies selection filter using query operators. 
+   *  **projection** specifies the fields to return in the documents that match the query filter. For details, see
    *                 [Projection](https://docs.mongodb.com/manual/reference/method/db.collection.find/#find-projection).
+   *  **sort** to
+   *  - Optional. 
    * @returns {promise}
    */
-  async findOne (filter = {}, projection = {}) {
+  async findOne (options = {}, nativeQuery = null) {
     try {
-      return await this.Model.findOne(filter, projection).exec()
+      const { filter = {}, projection = null, sort = null } = options
+      return await this.Model.findOne(this.convertQuery(filter, nativeQuery), projection).sort(sort).exec()
     } catch (err) {
       return err
     }
   }
 
   /**
-   * Find a specific records, by using search entries.
+   * @property {Function} find - Find a specific records, by using search entries.
    * @param {object} filter Represent filter object for mongo find()
    * @returns {promise}
    */
-  async find (filter = {}) {
+  async find (filter = {}, projection = {}, nativeQuery = null) {
     try {
-      const documents = await this.Model.find(filter).exec()
+      const documents = await this.Model.find(this.convertQuery(filter, nativeQuery), projection).exec()
       return documents
     } catch (err) {
       return err
@@ -74,7 +116,8 @@ class MongooseDataSource extends DataSource {
   }
 
   /**
-   * Return all documents.
+   * @property {Function} all - Return all documents.
+   * @param {object} options - Represent filter object for mongo find()
    * @returns {promise}
    */
   async all (options = {}) {
