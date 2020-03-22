@@ -4,4 +4,4 @@
 
 Apollo GraphQL Datasource for Mongoose
 
-WIP
+[API](https://alexandervu.github.io/apollo-mongoose-datasource)
