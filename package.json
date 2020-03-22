@@ -27,7 +27,7 @@
     "lint": "eslint ./",
     "lint:fix": "eslint --fix ./",
     "predeploy": "npm run doc",
-    "deploy": "gh-pages -d doc"
+    "deploy": "gh-pages -d docs"
   },
   "repository": {
     "type": "git",
