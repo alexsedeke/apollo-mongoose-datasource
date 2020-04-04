@@ -1,89 +1,151 @@
+const kindOf = require('kind-of');
+
 /**
  * Convert number type to int or float.
- * @param {*} fieldType
- * @returns {string}
+ * @param {string} fieldType Type of the field value.
+ * @param {string} fieldValue The value to convert.
+ * @returns {string} The detailed type of number (int, float).
  */
-function getRealType (fieldType, fieldValue) {
-  let newType = fieldType
-
+function getTypeof(fieldType, fieldValue) {
+  let newType = kindOf(fieldType);
   if (fieldType === 'number' && fieldValue % 1 === 0) {
-    newType = 'int'
+    newType = 'int';
   }
-
   if (fieldType === 'number' && fieldValue % 1 !== 0) {
-    newType = 'float'
+    newType = 'float';
   }
-
-  return newType
+  return newType;
 }
 
-function convertContains (fieldType, fieldValue) {
-  switch (fieldType) {
-    case 'string':
-      return { $regex: fieldValue, $options: 'i' }
-    case 'int':
-      return fieldValue
-    case 'float':
-      return fieldValue
-    default:
-      return fieldValue
+/**
+ * Convert contains to $regex operator.
+ * @param {string} fieldType Type of the field value.
+ * @param {string} fieldValue The value to convert.
+ * @returns {string} Converted statement.
+ */
+function convertContains(fieldType, fieldValue) {
+  // we expect handling only type of string
+  if (fieldType !== 'string') {
+    return fieldValue;
   }
+  return { $regex: fieldValue, $options: 'i' };
 }
 
-function convertNotContains (fieldType, fieldValue) {
-  switch (fieldType) {
-    case 'string':
-      return { $not: { $regex: fieldValue, $options: 'i' } }
-    case 'int':
-      return fieldValue
-    case 'float':
-      return fieldValue
-    default:
-      return fieldValue
+/**
+ * Convert notContains to $not and $regex operator.
+ * @param {string} fieldType Type of the field value.
+ * @param {string} fieldValue The value to convert.
+ * @returns {string} Converted statement.
+ */
+function convertNotContains(fieldType, fieldValue) {
+  // we expect handling only type of string
+  if (fieldType !== 'string') {
+    return fieldValue;
   }
+  return { $not: { $regex: fieldValue, $options: 'i' } };
 }
 
-function convertBeginsWith (fieldType, fieldValue) {
-  switch (fieldType) {
-    case 'string':
-      return { $regex: `^${fieldValue}`, $options: 'i' }
-    case 'int':
-      return fieldValue
-    case 'float':
-      return fieldValue
-    default:
-      return fieldValue
+/**
+ * Convert startsWith to $regex operator.
+ * @param {string} fieldType Type of the field value.
+ * @param {string} fieldValue The value to convert.
+ * @returns {string} Converted statement.
+ */
+function convertStartsWith(fieldType, fieldValue) {
+  // we expect handling only type of string
+  if (fieldType !== 'string') {
+    return fieldValue;
   }
+  return { $regex: `^${fieldValue}`, $options: 'i' };
 }
 
-function convertSearchType (fieldName, fieldType, fieldValue) {
-  const fieldTypeReal = getRealType(fieldType, fieldValue)
+/**
+ * Convert endsWith to $regex operator.
+ * @param {string} fieldType Type of the field value.
+ * @param {string} fieldValue The value to convert.
+ * @returns {string} Converted statement.
+ */
+function convertEndsWith(fieldType, fieldValue) {
+  // we expect handling only type of string
+  if (fieldType !== 'string') {
+    return fieldValue;
+  }
+  return { $regex: `${fieldValue}$`, $options: 'i' };
+}
 
+/**
+ * Convert in ($in) operator.
+ * @param {string} fieldType Type of the field value.
+ * @param {array} fieldValue The value to convert.
+ * @returns {string} Converted statement.
+ */
+function convertIn(fieldType, fieldValue) {
+  // we expect handling only type of array
+  if (fieldType !== 'array') {
+    return fieldValue;
+  }
+  return { $in: fieldValue };
+}
+
+/**
+ * Convert or ($or) operator.
+ * @param {string} fieldType Type of the field value.
+ * @param {array} fieldValue The value to convert.
+ * @returns {string} Converted statement.
+ */
+function convertLogicalOperator(fieldType, fieldValue, fieldName) {
+  // we expect handling only type of array
+  if (fieldType !== 'array') {
+    return fieldValue;
+  }
+  const operator = `$${fieldName}`;
+  const result = { [operator]: [] };
+  fieldValue.forEach((statement) => {
+    result[operator].push(toMongooseFilterExpression(statement));
+  });
+  return result;
+}
+
+/**
+ * Convert GraphQL set operator to Mongoose operator.
+ * @param {string} fieldName Name of the field.
+ * @param {*} fieldType Type of the field value.
+ * @param {*} fieldValue The value to convert.
+ * @returns {string} Converted statement.
+ */
+function convertSearchOperator(fieldName, fieldType, fieldValue) {
   switch (fieldName) {
     case 'ne':
-      return { $ne: fieldValue }
+      return { $ne: fieldValue };
     case 'eq':
-      return fieldValue
+      return fieldValue;
     case 'le':
-      return { $lte: fieldValue }
+      return { $lte: fieldValue };
     case 'lt':
-      return { $lt: fieldValue }
+      return { $lt: fieldValue };
     case 'ge':
-      return { $gte: fieldValue }
+      return { $gte: fieldValue };
     case 'gt':
-      return { $gt: fieldValue }
+      return { $gt: fieldValue };
     case 'exists':
-      return { $exists: parseInt(fieldValue, 0) }
+      return { $exists: parseInt(fieldValue, 0) };
     case 'contains':
-      return convertContains(fieldTypeReal, fieldValue)
+      return convertContains(fieldType, fieldValue);
     case 'notContains':
-      return convertNotContains(fieldTypeReal, fieldValue)
+      return convertNotContains(fieldType, fieldValue);
     case 'between':
-      return { $gte: fieldValue[0], $lte: fieldValue[1] }
-    case 'beginsWith':
-      return convertBeginsWith(fieldTypeReal, fieldValue)
+      return { $gte: fieldValue[0], $lte: fieldValue[1] };
+    case 'startsWith':
+      return convertStartsWith(fieldType, fieldValue);
+    case 'endsWith':
+      return convertEndsWith(fieldType, fieldValue);
+    case 'in':
+      return convertIn(fieldType, fieldValue);
+    case 'or':
+    case 'and':
+      return convertLogicalOperator(fieldType, fieldValue, fieldName);
     default:
-      return fieldValue
+      return fieldValue;
   }
 }
 
@@ -97,24 +159,30 @@ function convertSearchType (fieldName, fieldType, fieldValue) {
  * @param {object} filter
  * @returns {object}
  */
-function toMongooseFilterExpression (filter = {}) {
-  const fields = Object.keys(filter)
-  const transferedFilter = {}
+function toMongooseFilterExpression(filter = {}) {
+  const fields = Object.keys(filter);
+  let transferedFilter = {};
 
   fields.forEach((field) => {
-    // Detect if this is a object
-    if (typeof filter[field] === 'object') {
-      const fieldSearchType = Object.keys(filter[field])[0]
-      const fieldValue = filter[field][fieldSearchType]
-      const fieldType = typeof filter[field][fieldSearchType]
+    // detect type of field value
+    const isTypeOf = kindOf(filter[field]);
+    const fieldSearchType = Object.keys(filter[field])[0];
+    const fieldValue = filter[field][fieldSearchType];
+    const fieldType = getTypeof(filter[field][fieldSearchType]);
 
-      transferedFilter[field] = convertSearchType(fieldSearchType, fieldType, fieldValue)
-    } else {
-      // else tranfer as normal search
-      transferedFilter[field] = filter[field]
+    switch (isTypeOf) {
+      case 'object':
+        transferedFilter[field] = convertSearchOperator(fieldSearchType, fieldType, fieldValue);
+        break;
+      case 'array':
+        transferedFilter = Object.assign(transferedFilter, convertSearchOperator(field, isTypeOf, filter[field]));
+        break;
+      default:
+        // else tranfer as normal search
+        transferedFilter[field] = filter[field];
     }
-  })
-  return transferedFilter
+  });
+  return transferedFilter;
 }
 
-module.exports = toMongooseFilterExpression
+module.exports = toMongooseFilterExpression;
