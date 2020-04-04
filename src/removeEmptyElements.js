@@ -1,7 +1,7 @@
 /**
- * Remove empty values from document.
- * @param {object} document Document object with all kind of values.
- * @returns document without emptyish values
+ * Remove empty values properties from document to prevent fields to be cleared via (multi-)updates.
+ * @param {object} document Document object with all kind of property values.
+ * @returns document without empty values
  */
 function removeEmptyObjectElements (document) {
   const result = {}
