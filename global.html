@@ -27,7 +27,7 @@
 
 <nav >
     
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MongooseDataSource.html">MongooseDataSource</a><ul class='methods'><li data-type='method'><a href="MongooseDataSource.html#add">add</a></li><li data-type='method'><a href="MongooseDataSource.html#all">all</a></li><li data-type='method'><a href="MongooseDataSource.html#convertQuery">convertQuery</a></li><li data-type='method'><a href="MongooseDataSource.html#delete">delete</a></li><li data-type='method'><a href="MongooseDataSource.html#deleteMany">deleteMany</a></li><li data-type='method'><a href="MongooseDataSource.html#deleteManyById">deleteManyById</a></li><li data-type='method'><a href="MongooseDataSource.html#find">find</a></li><li data-type='method'><a href="MongooseDataSource.html#findOne">findOne</a></li><li data-type='method'><a href="MongooseDataSource.html#findOneAndUpdate">findOneAndUpdate</a></li><li data-type='method'><a href="MongooseDataSource.html#getById">getById</a></li><li data-type='method'><a href="MongooseDataSource.html#initialize">initialize</a></li><li data-type='method'><a href="MongooseDataSource.html#list">list</a></li><li data-type='method'><a href="MongooseDataSource.html#listAggregation">listAggregation</a></li><li data-type='method'><a href="MongooseDataSource.html#update">update</a></li><li data-type='method'><a href="MongooseDataSource.html#updateMany">updateMany</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#FILTER_CONVERTER">FILTER_CONVERTER</a></li><li><a href="global.html#getRealType">getRealType</a></li><li><a href="global.html#PAGINATION_DEFAULT_LIMIT">PAGINATION_DEFAULT_LIMIT</a></li><li><a href="global.html#removeEmptyObjectElements">removeEmptyObjectElements</a></li><li><a href="global.html#toMongooseFilterExpression">toMongooseFilterExpression</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="MongooseDataSource.html">MongooseDataSource</a><ul class='methods'><li data-type='method'><a href="MongooseDataSource.html#add">add</a></li><li data-type='method'><a href="MongooseDataSource.html#all">all</a></li><li data-type='method'><a href="MongooseDataSource.html#convertQuery">convertQuery</a></li><li data-type='method'><a href="MongooseDataSource.html#delete">delete</a></li><li data-type='method'><a href="MongooseDataSource.html#deleteMany">deleteMany</a></li><li data-type='method'><a href="MongooseDataSource.html#deleteManyById">deleteManyById</a></li><li data-type='method'><a href="MongooseDataSource.html#find">find</a></li><li data-type='method'><a href="MongooseDataSource.html#findOne">findOne</a></li><li data-type='method'><a href="MongooseDataSource.html#findOneAndUpdate">findOneAndUpdate</a></li><li data-type='method'><a href="MongooseDataSource.html#getById">getById</a></li><li data-type='method'><a href="MongooseDataSource.html#initialize">initialize</a></li><li data-type='method'><a href="MongooseDataSource.html#list">list</a></li><li data-type='method'><a href="MongooseDataSource.html#listAggregation">listAggregation</a></li><li data-type='method'><a href="MongooseDataSource.html#update">update</a></li><li data-type='method'><a href="MongooseDataSource.html#updateMany">updateMany</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#convertContains">convertContains</a></li><li><a href="global.html#convertEndsWith">convertEndsWith</a></li><li><a href="global.html#convertIn">convertIn</a></li><li><a href="global.html#convertLogicalOperator">convertLogicalOperator</a></li><li><a href="global.html#convertNotContains">convertNotContains</a></li><li><a href="global.html#convertSearchOperator">convertSearchOperator</a></li><li><a href="global.html#convertStartsWith">convertStartsWith</a></li><li><a href="global.html#FILTER_CONVERTER">FILTER_CONVERTER</a></li><li><a href="global.html#getTypeof">getTypeof</a></li><li><a href="global.html#PAGINATION_DEFAULT_LIMIT">PAGINATION_DEFAULT_LIMIT</a></li><li><a href="global.html#removeEmptyObjectElements">removeEmptyObjectElements</a></li><li><a href="global.html#toMongooseFilterExpression">toMongooseFilterExpression</a></li></ul>
 </nav>
 
 <div id="main">
@@ -274,7 +274,7 @@
 
     
 
-    <h4 class="name" id="getRealType"><span class="type-signature"></span>getRealType<span class="signature">(fieldType)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="convertContains"><span class="type-signature"></span>convertContains<span class="signature">(fieldType, fieldValue)</span><span class="type-signature"> &rarr; {string}</span></h4>
 
     
 
@@ -286,7 +286,1297 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line6">line 6</a>
+        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line26">line 26</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Convert contains to $regex operator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Type of the field value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The value to convert.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Converted statement.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="convertEndsWith"><span class="type-signature"></span>convertEndsWith<span class="signature">(fieldType, fieldValue)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line68">line 68</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Convert endsWith to $regex operator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Type of the field value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The value to convert.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Converted statement.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="convertIn"><span class="type-signature"></span>convertIn<span class="signature">(fieldType, fieldValue)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line82">line 82</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Convert in ($in) operator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Type of the field value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The value to convert.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Converted statement.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="convertLogicalOperator"><span class="type-signature"></span>convertLogicalOperator<span class="signature">(fieldType, fieldValue)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line96">line 96</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Convert or ($or) operator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Type of the field value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The value to convert.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Converted statement.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="convertNotContains"><span class="type-signature"></span>convertNotContains<span class="signature">(fieldType, fieldValue)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line40">line 40</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Convert notContains to $not and $regex operator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Type of the field value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The value to convert.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Converted statement.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="convertSearchOperator"><span class="type-signature"></span>convertSearchOperator<span class="signature">(fieldName, fieldType, fieldValue)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line116">line 116</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Convert GraphQL set operator to Mongoose operator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the field.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Type of the field value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">*</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The value to convert.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Converted statement.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="convertStartsWith"><span class="type-signature"></span>convertStartsWith<span class="signature">(fieldType, fieldValue)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line54">line 54</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>Convert startsWith to $regex operator.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Type of the field value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The value to convert.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>Converted statement.</p>
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getTypeof"><span class="type-signature"></span>getTypeof<span class="signature">(fieldType, fieldValue)</span><span class="type-signature"> &rarr; {string}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line9">line 9</a>
     </li></ul></dd>
     
 
@@ -370,7 +1660,7 @@
             <td class="type">
             
                 
-<span class="param-type">*</span>
+<span class="param-type">string</span>
 
 
             
@@ -380,7 +1670,30 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Type of the field value.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fieldValue</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The value to convert.</p></td>
         </tr>
 
     
@@ -405,6 +1718,10 @@
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>The detailed type of number (int, float).</p>
+</div>
+
 
 
 <dl class="param-type">
@@ -586,7 +1903,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line100">line 100</a>
+        <a href="src_toMongooseFilterExpression.js.html">src/toMongooseFilterExpression.js</a>, <a href="src_toMongooseFilterExpression.js.html#line162">line 162</a>
     </li></ul></dd>
     
 
@@ -748,7 +2065,7 @@ or boolean values. It will be extend.</p>
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Apr 04 2020 17:13:06 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Apr 04 2020 17:33:38 GMT+0000 (Coordinated Universal Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
